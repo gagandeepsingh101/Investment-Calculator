@@ -11,8 +11,8 @@
         <tr class="border-b border-transparent  odd:bg-zinc-800/30  even:bg-zinc-800"
             *ngFor="let investment of allYear">
             <td class="p-3 text-sm">{{investment.year}}</td>
-            <td class="p-3 text-sm font-medium text-pink-500">${{investment.investment.toLocaleString()}}</td>
-            <td class="p-3 text-sm">${{investment.interest.toLocaleString()}}</td>
-            <td class="hidden p-3 text-sm md:table-cell">${{investment.totalInterest.toLocaleString()}}</td>
+            <td class="p-3 text-sm font-medium text-pink-500">₹‎ {{investment.investment.toLocaleString()}}</td>
+            <td class="p-3 text-sm">₹‎ {{investment.interest.toLocaleString()}}</td>
+            <td class="hidden p-3 text-sm md:table-cell">₹‎ {{investment.totalInterest.toLocaleString()}}</td>
     </tbody>
 </table>
