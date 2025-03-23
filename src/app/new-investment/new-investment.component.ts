@@ -31,8 +31,8 @@ export class NewInvestmentComponent {
 
 
     let amount = principal * Math.pow(1 + rate / frequency, frequency * years);
-    this.investmentAmount = Math.floor(amount); // Round to 2 decimal places
-    this.interestRate = Math.floor((amount - principal));
+    this.investmentAmount = Math.round(amount); // Round to 2 decimal places
+    this.interestRate = Math.round((amount - principal));
     this.firstInvestment.emit(this.investmentCreated)// Round to 2 decimal places
   }
 }
