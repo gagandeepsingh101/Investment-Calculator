@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';  // Import Forms Modules
 import { NewInvestment } from './new-investment.module';
+import { CurrencyPipe } from '@angular/common';
 
 
 @Component({
   selector: 'app-new-investment',
-  imports: [FormsModule],
+  imports: [FormsModule, CurrencyPipe],
   templateUrl: './new-investment.component.html',
   styleUrl: './new-investment.component.css'
 })
@@ -25,8 +26,8 @@ export class NewInvestmentComponent {
 
 
     let amount = principal * Math.pow(1 + rate / frequency, frequency * years);
-    this.investmentAmount = Math.round(amount); // Round to 2 decimal places
-    this.interestRate = Math.round((amount - principal));
+    this.investmentAmount = amount; // Round to 2 decimal places
+    this.interestRate = amount - principal;
     this.firstInvestment.emit(this.investmentCreated)// Round to 2 decimal places
   }
 }

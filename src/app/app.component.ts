@@ -41,9 +41,9 @@ export class AppComponent {
 
       allYear.push({
         year,
-        investment: Math.round(principal),
-        interest: Math.round(interestThisYear),
-        totalInterest: Math.round(totalInterest),
+        investment: principal,
+        interest: interestThisYear,
+        totalInterest: totalInterest,
       });
     }
 
