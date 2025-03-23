@@ -2,7 +2,8 @@
     <div class="space-y-3">
         <div class="flex items-center justify-between">
             <label for="initialInvestment" class="text-sm font-medium text-zinc-400">Initial Investment</label>
-            <span class="text-sm font-medium text-pink-500">${{investmentCreated!.initialInvestment}}</span>
+            <span
+                class="text-sm font-medium text-pink-500">${{investmentCreated!.initialInvestment.toLocaleString()}}</span>
         </div>
         <input type="range" name="" id="" class="w-full" min="1000" max="100000" step="1000"
             [(ngModel)]="investmentCreated!.initialInvestment" (ngModelChange)="calculateInvestment()"
@@ -46,8 +47,9 @@
     </div>
     <div class="mt-6 rounded-md bg-zinc-800/50 p-4">
         <div class="flex items-center justify-between"><span class="text-sm text-zinc-400">Final Value:</span><span
-                class="text-lg font-bold text-pink-500">${{investmentAmount}}</span></div>
+                class="text-lg font-bold text-pink-500">${{investmentAmount.toLocaleString()}}</span></div>
         <div class="mt-2 flex items-center justify-between"><span class="text-sm text-zinc-400">Total
-                Interest:</span><span class="text-sm font-medium text-purple-400">${{interestRate}}</span></div>
+                Interest:</span><span
+                class="text-sm font-medium text-purple-400">${{interestRate.toLocaleString()}}</span></div>
     </div>
 </div>
