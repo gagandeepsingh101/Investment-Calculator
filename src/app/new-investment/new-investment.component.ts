@@ -12,22 +12,16 @@ import { NewInvestment } from './new-investment.module';
 export class NewInvestmentComponent {
 
 
-  @Input({ required: true }) investmentCreated!: NewInvestment
+  @Input({ required: true }) investmentCreated?: NewInvestment
   @Output() firstInvestment = new EventEmitter<NewInvestment>();
-  investmentAmount: number = 0;
-  interestRate: number = 0;
+  investmentAmount: number = 1001;
+  interestRate: number = 1;
 
   calculateInvestment() {
-    let principal = this.investmentCreated.initialInvestment;
-    let rate = this.investmentCreated.annualInterestRate / 100; // Convert percentage to decimal
-    let years = this.investmentCreated.numberOfYears;
-    let frequency = this.investmentCreated.compoundFrequency;
-
-    if (principal <= 0 || rate < 0 || years <= 0 || frequency <= 0) {
-      console.error("Invalid input values.");
-      return;
-    }
-
+    let principal = this.investmentCreated?.initialInvestment || 1000;
+    let rate = (this.investmentCreated?.annualInterestRate || 0.1) / 100; // Convert percentage to decimal
+    let years = (this.investmentCreated?.numberOfYears || 1);
+    let frequency = (this.investmentCreated?.compoundFrequency || 1);
 
 
     let amount = principal * Math.pow(1 + rate / frequency, frequency * years);

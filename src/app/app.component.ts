@@ -25,23 +25,31 @@ export class AppComponent {
     let frequency = investment.compoundFrequency;
     let allYear: YearInvestment[] = [];
 
+    let totalInterest = 0;
 
-    let currentInterest: number = 0
+    for (let year = 1; year <= investment.numberOfYears; year++) {
+      let previousAmount = principal;
 
-    for (let i = 0; i < investment.numberOfYears; i++) {
-      let amount = principal * Math.pow(1 + rate / frequency, frequency * (i + 1));
-      let interest = amount - principal;
-      currentInterest += interest;
+      // Apply compounding for the year
+      for (let period = 0; period < frequency; period++) {
+        let interestForPeriod = principal * (rate / frequency);
+        principal += interestForPeriod;
+      }
+
+      let interestThisYear = principal - previousAmount;
+      totalInterest += interestThisYear;
+
       allYear.push({
-        year: i + 1,
-        investment: Math.round(amount),
-        interest: Math.round(interest),
-        totalInterest: Math.round(currentInterest)
-      })
-
+        year,
+        investment: Math.round(principal),
+        interest: Math.round(interestThisYear),
+        totalInterest: Math.round(totalInterest),
+      });
     }
+
     return allYear;
   }
+
   getFirstInvestment(currentInvestment: NewInvestment) {
     this.newInvestment = currentInvestment;
   }
