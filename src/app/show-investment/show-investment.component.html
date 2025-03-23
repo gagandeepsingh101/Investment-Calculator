@@ -1,0 +1,17 @@
+<table class="w-full">
+    <thead class="sticky top-0 z-10 bg-zinc-900">
+        <tr class="border-b border-zinc-800">
+            <th class="p-3 text-left text-sm font-medium text-zinc-400">Year</th>
+            <th class="p-3 text-left text-sm font-medium text-zinc-400">Value</th>
+            <th class="p-3 text-left text-sm font-medium text-zinc-400">Interest</th>
+            <th class="hidden p-3 text-left text-sm font-medium text-zinc-400 md:table-cell">Total Interest</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="border-b border-transparent  odd:bg-zinc-800/30  even:bg-zinc-800" *ngFor="let investment of allYear">
+            <td class="p-3 text-sm">{{investment.year}}</td>
+            <td class="p-3 text-sm font-medium text-pink-500">${{investment.investment}}</td>
+            <td class="p-3 text-sm">${{investment.interest}}</td>
+            <td class="hidden p-3 text-sm md:table-cell">${{investment.totalInterest}}</td>
+    </tbody>
+</table>

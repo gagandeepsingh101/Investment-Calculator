@@ -1,12 +1,50 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { NewInvestmentComponent } from "./new-investment/new-investment.component";
+import { ShowInvestmentComponent } from "./show-investment/show-investment.component";
+import { HeaderComponent } from "./header/header.component";
+import { NewInvestment } from './new-investment/new-investment.module';
+import { YearInvestment } from './show-investment/show-investment.module';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [NewInvestmentComponent, ShowInvestmentComponent, HeaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'investment-calculator';
+  newInvestment: NewInvestment = {
+    initialInvestment: 1000, annualInterestRate: 0.1, numberOfYears: 1, compoundFrequency: 1
+  }
+
+
+  calculateInterestPerYear(investment: NewInvestment) {
+    let principal = investment.initialInvestment;
+    let rate = investment.annualInterestRate / 100; // Convert percentage to decimal
+    let frequency = investment.compoundFrequency;
+    let allYear: YearInvestment[] = [];
+
+
+    let currentInterest: number = 0
+
+    for (let i = 0; i < investment.numberOfYears; i++) {
+      let amount = principal * Math.pow(1 + rate / frequency, frequency * (i + 1));
+      let interest = amount - principal;
+      currentInterest += interest;
+      allYear.push({
+        year: i + 1,
+        investment: Math.round(amount),
+        interest: Math.round(interest),
+        totalInterest: Math.round(currentInterest)
+      })
+
+    }
+    return allYear;
+  }
+  getFirstInvestment(currentInvestment: NewInvestment) {
+    this.newInvestment = currentInvestment;
+  }
+
+
 }
